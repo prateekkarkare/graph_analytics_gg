@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import community
 import operator
+import csv
 
 gg_data = pd.read_csv('adata_24dec.csv')
 
@@ -60,3 +61,9 @@ sorted_bc_val = sorted(bc_value.items(), key=operator.itemgetter(1), reverse=Tru
 sorted_bc_val = [list(l) for l in sorted_bc_val]
 for l in sorted_bc_val:
     l.append(node_attr[l[0]]['status'])
+
+with open('user_list.csv', 'wb') as myfile:
+    wr = csv.writer(myfile)
+    for l in sorted_bc_val:
+        wr.writerow(l)
+myfile.close()
