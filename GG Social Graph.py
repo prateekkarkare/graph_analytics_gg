@@ -8,8 +8,6 @@ import csv
 
 gg_data = pd.read_csv('adata_24dec.csv')
 
-#result = gg_data.sort_values(by=['friend_id'])
-#node_list = set(gg_data['user_id'].values.tolist())
 edge_array = gg_data[['user_id','friend_id']].values
 edge_tuple = tuple(map(tuple, edge_array))
 
@@ -30,8 +28,8 @@ remove_0 = [node for node,degree in Graph.degree() if degree < 1]
 Graph.remove_nodes_from(remove_0)
 print nx.info(Graph)
 
-active_nodes = [n for (n,s) in nx.get_node_attributes(Graph,'status').iteritems() if s == 'active']
-ghost_nodes = [n for (n,s) in  nx.get_node_attributes(Graph,'status').iteritems() if s == 'ghost']
+#active_nodes = [n for (n,s) in nx.get_node_attributes(Graph,'status').iteritems() if s == 'active']
+#ghost_nodes = [n for (n,s) in  nx.get_node_attributes(Graph,'status').iteritems() if s == 'ghost']
 
 #Create network layout for visualizations
 spring_pos = nx.spring_layout(Graph)
