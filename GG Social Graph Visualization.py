@@ -31,7 +31,7 @@ print nx.info(Graph)
 
 nodes_to_keep = []
 for node in Graph.nodes():
-    if Graph.degree(node) > 400:
+    if Graph.degree(node) > 600:
         nodes_to_keep.append(node)
 
 edge_list = list(Graph.edges())
@@ -55,12 +55,17 @@ spring_pos = nx.spring_layout(newGraph)
 
 plt.axis("off")
 d=dict(nx.degree(newGraph))
-nx.draw_networkx(newGraph, pos = spring_pos, nodelist=d.keys(), node_color = ['green' if newGraph.node[n]['status'] == 'ghost' else 'red' for n in d.keys()], with_labels = False, node_size=[v for v in d.values()])
+nx.draw_networkx(newGraph, pos = spring_pos, nodelist=d.keys(),\
+node_color = ['blue' if n==12 else 'green' if newGraph.node[n]['status'] == 'ghost' else 'red' for n in d.keys()],\
+with_labels = False, node_size=[v for v in d.values()], width = 0.1)
 plt.show()
+
+nx.write_gexf(newGraph, "GG_visualize.gexf")
 
 parts = community.best_partition(newGraph)
 values = [parts.get(node) for node in newGraph.nodes()]
 
 plt.axis("off")
-nx.draw_networkx(newGraph, pos = spring_pos, cmap = plt.get_cmap("jet"), node_color = values, node_size = 35, with_labels = False)
+nx.draw_networkx(newGraph, pos = spring_pos, cmap = plt.get_cmap("jet"), \
+node_color = values, node_size = 35, with_labels = False)
 plt.show()
