@@ -55,7 +55,7 @@ spring_pos = nx.spring_layout(newGraph)
 
 plt.axis("off")
 d=dict(nx.degree(newGraph))
-nx.draw_networkx(newGraph, pos = spring_pos, nodelist=d.keys(),\
+nx.draw_networkx(newGraph, pos = spring_, nodelist=d.keys(),\
 node_color = ['blue' if n==12 else 'green' if newGraph.node[n]['status'] == 'ghost' else 'red' for n in d.keys()],\
 with_labels = False, node_size=[v for v in d.values()], width = 0.1)
 plt.show()
